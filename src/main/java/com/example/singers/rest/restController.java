@@ -2,10 +2,8 @@ package com.example.singers.rest;
 
 import com.example.singers.entity.Singer;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +24,12 @@ public class restController {
         singerList.add(new Singer(3, "Snoop Dogg", "", "Hip Hop"));
         singerList.add(new Singer(4, "Jerry ", "Rivera", "Salsa"));
     }
+    @PostMapping("/singers")
+    public Singer addSinger(@RequestBody Singer theSinger){
+        singerList.add(theSinger);
 
+        return theSinger;
+    }
 
 
 
