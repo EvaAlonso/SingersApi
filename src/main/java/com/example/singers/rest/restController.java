@@ -30,6 +30,19 @@ public class restController {
 
         return theSinger;
     }
+    @PutMapping("/students")
+    public Singer updateSinger(@RequestBody Singer theSinger){
+
+        for (Singer singer : singerList) {
+            if(singer.getId() == theSinger.getId()){
+                singer.setName(theSinger.getName());
+                singer.setSurname(theSinger.getSurname());
+                singer.setGenre(theSinger.getGenre());
+            }
+        }
+
+        return theSinger;
+    }
 
 
 
