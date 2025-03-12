@@ -30,7 +30,7 @@ public class restController {
 
         return theSinger;
     }
-    @PutMapping("/students")
+    @PutMapping("/singers")
     public Singer updateSinger(@RequestBody Singer theSinger){
 
         for (Singer singer : singerList) {
