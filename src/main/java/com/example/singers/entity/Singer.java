@@ -2,6 +2,7 @@ package com.example.singers.entity;
 
 public class Singer {
 
+    private int id;
     private String name;
     private String surname;
     private String genre;
@@ -9,7 +10,8 @@ public class Singer {
     public Singer() {
     }
 
-    public Singer(String name, String surname, String genre) {
+    public Singer(int id, String name, String surname, String genre) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.genre = genre;
@@ -17,6 +19,14 @@ public class Singer {
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {
