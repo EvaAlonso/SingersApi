@@ -1,4 +1,4 @@
-package com.example.singers.models;
+package com.example.singers.entity;
 
 public class Singer {
     private String name;
