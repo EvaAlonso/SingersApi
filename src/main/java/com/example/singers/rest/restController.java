@@ -54,4 +54,20 @@ public class restController {
         this.singerList.removeIf(s -> s.getId() == singerId);
         return "Acabo la funcion: "+ singerId;
     }
+
+    @GetMapping("/singer/{singerId}")
+    public Singer getId(@PathVariable int id){
+        for(Singer singer: this.singerList){
+            if(singer.getId() == id){
+                return singer;
+            }
+        }
+        return null;
+    }
+
+    @GetMapping("/singer/{singerId}")
+    public String getHello(@PathVariable String name) {
+        return "¡Hello, " + name + "! Welcome to Hit Parader.";
+    }
+
 }
