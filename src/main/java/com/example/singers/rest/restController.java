@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/singers")
 
 
 public class restController {
 
-    List<Singer> singerList;
+    private List<Singer> singerList;
 
     @PostConstruct
-    public void loadData(){
+    public void loadData() {
         singerList = new ArrayList<>();
 
         singerList.add(new Singer(1, "Metallica", "", "Heavy"));
@@ -24,12 +24,33 @@ public class restController {
         singerList.add(new Singer(3, "Snoop Dogg", "", "Hip Hop"));
         singerList.add(new Singer(4, "Jerry ", "Rivera", "Salsa"));
     }
+
+
+    @GetMapping
+    public List<Singer> getSingers() {
+        return singerList;
+    }
+
+    @GetMapping("/{singerId}")
+    public Singer getSinger(@PathVariable int singerId) {
+        for (Singer singer : singerList) {
+            if (singer.getId() == singerId) {
+                return singer;
+            }
+        }
+        return null;
+    }
+
+
     @PostMapping("/singers")
     public Singer addSinger(@RequestBody Singer theSinger){
         singerList.add(theSinger);
 
         return theSinger;
     }
+
+
+
     @PutMapping("/singers")
     public Singer updateSinger(@RequestBody Singer theSinger){
 
@@ -44,11 +65,6 @@ public class restController {
         return theSinger;
     }
 
-
-
-
-
-
     @DeleteMapping("/{singerId}")
     public String deleteSinger(@PathVariable int singerId){
         this.singerList.removeIf(s -> s.getId() == singerId);
@@ -56,18 +72,15 @@ public class restController {
     }
 
     @GetMapping("/singer/{singerId}")
-    public Singer getId(@PathVariable int id){
+    public Singer getId(@PathVariable int singerId){
         for(Singer singer: this.singerList){
-            if(singer.getId() == id){
+            if(singer.getId() == singerId){
                 return singer;
             }
         }
         return null;
     }
 
-    @GetMapping("/singer/{singerId}")
-    public String getHello(@PathVariable String name) {
-        return "¡Hello, " + name + "! Welcome to Hit Parader.";
-    }
+
 
 }
